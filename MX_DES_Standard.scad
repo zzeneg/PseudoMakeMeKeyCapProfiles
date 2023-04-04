@@ -11,17 +11,21 @@ use <skin.scad>
 Version 2: Eliptical Rectangle
 
 */
-mirror([0,0,0])keycap(
-  keyID  = 14, //change profile refer to KeyParameters Struct
-  cutLen = 0, //Don't change. for chopped caps
-  Stem   = true, //tusn on shell and stems
-  Dish   = true, //turn on dish cut
-  Stab   = 0,
-  visualizeDish = false, // turn on debug visual of Dish
-  crossSection  = false, // center cut to check internal
-  homeDot = false, //turn on homedots
-  Legends = false
- );
+for (i = [0 : 3]) {
+    translate([0, i * 19, 0])
+    mirror([0,0,0])
+    keycap(
+        keyID  = 7 + i * 4, //change profile refer to KeyParameters Struct
+        cutLen = 0, //Don't change. for chopped caps
+        Stem   = true, //tusn on shell and stems
+        Dish   = true, //turn on dish cut
+        Stab   = 0,
+        visualizeDish = false, // turn on debug visual of Dish
+        crossSection  = false, // center cut to check internal
+        homeDot = false, //turn on homedots
+        Legends = false
+    );
+}
 
 //#translate([0,38,13])cube([18-5.7, 18-5.7,1],center = true);
 //Parameters
@@ -33,7 +37,7 @@ fn            = 60;  //resolution of Rounded Rectangles: 60 for output
 layers        = 50;  //resolution of vertical Sweep: 50 for output
 dotRadius     = 0.55;   //home dot size; default 0.55
 //---Stem param
-Tol    = 0.10;
+Tol    = 0.00;
 stemRot = 0;
 stemWid = 7.55;
 stemLen = 5.55 ;
