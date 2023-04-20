@@ -1,5 +1,8 @@
 # Pseudo Make Me Key Cap Profile
 
+## What the fork
+This fork adds a few scripts to generate CS and DES keycaps, as well as providing stls for MJF/SLS printing.
+
 ## How to
 * make sure OpenSCAD is up to date.
 * unzip libraries.zip into your OpenSCAD libraries
