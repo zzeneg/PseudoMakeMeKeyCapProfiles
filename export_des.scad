@@ -4,18 +4,31 @@ spacing = 19.05;
 spru_radius = 0.8;
 
 union() {
-    translate([0, -19 * 0, 0])  des_spru(row=1);
-    translate([0, -19 * 1, 0])  des_spru(row=2);
-    translate([0, -19 * 2, 0])  des_spru(row=3);
-    translate([0, -19 * 3, 0])  des_spru(row=3, home=true);
-    translate([0, -19 * 4, 0])  des_spru(row=4);
-    translate([0, -19 * 5, 0])  des_spru(row=5);
-    translate([0, -19 * 6, 0])  des_spru(row=5, width=1.25);
-    translate([0, -19 * 7, 0])  des_spru(row=5, width=1.5);
-    translate([0, -19 * 8, 0])  des_spru(row=5, width=1.75);
-    translate([0, -19 * 9, 0])  des_spru(row=5, width=2);
-    translate([0, -19 * 10, 0]) des_spru(row=5, width=2.25);
-    translate([0, -19 * 11, 0]) des_spru(row=5, width=2.75);
+    translate([0, -19 *  0, 0])  des_spru(row=1);
+    translate([0, -19 *  1, 0])  des_spru(row=2);
+    translate([0, -19 *  2, 0])  des_spru(row=3);
+    translate([0, -19 *  3, 0])  des_spru(row=3, home=true);
+    translate([0, -19 *  4, 0])  des_spru(row=4);
+    translate([0, -19 *  5, 0])  des_spru(row=5);
+
+    translate([0, -19 *  7, 0])  des_spru(row=2, width=1.25);
+    translate([0, -19 *  8, 0])  des_spru(row=3, width=1.25);
+    translate([0, -19 *  9, 0])  des_spru(row=4, width=1.25);
+    translate([0, -19 * 10, 0])  des_spru(row=5, width=1.25);
+
+    translate([0, -19 * 12, 0])  des_spru(row=2, width=1.5);
+    translate([0, -19 * 13, 0])  des_spru(row=3, width=1.5);
+    translate([0, -19 * 14, 0])  des_spru(row=4, width=1.5);
+    translate([0, -19 * 15, 0])  des_spru(row=5, width=1.5);
+
+    translate([0, -19 * 17, 0])  des_spru(row=2, width=1.75);
+    translate([0, -19 * 18, 0])  des_spru(row=3, width=1.75);
+    translate([0, -19 * 19, 0])  des_spru(row=4, width=1.75);
+    translate([0, -19 * 20, 0])  des_spru(row=5, width=1.75);
+
+    translate([0, -19 * 22, 0])  des_spru(row=5, width=2);
+    translate([0, -19 * 23, 0])  des_spru(row=5, width=2.25);
+    translate([0, -19 * 24, 0])  des_spru(row=5, width=2.75);
 }
 
 module des_spru(row, home=false, n=spru_n, width=1, radius=spru_radius) {
@@ -37,14 +50,27 @@ module des_spru(row, home=false, n=spru_n, width=1, radius=spru_radius) {
 
 module des_keycap(row, width=1, home=false) {
     if      (row == 1) {rotate([0, 0, 180]) des_standard(5);}
-    else if (row == 2) {des_standard(2);}
-    else if (row == 3) {des_standard(1, home=home);}
-    else if (row == 4) {des_standard(0);}
-    else if (row == 5 && width == 1) {des_standard(4);}
+
+    else if (row == 2 && width == 1   ) {des_standard(2);}
+    else if (row == 2 && width == 1.25) {des_standard(9);}
+    else if (row == 2 && width == 1.5 ) {des_standard(13);}
+    else if (row == 2 && width == 1.75) {des_standard(17);}
+
+    else if (row == 3 && width == 1   ) {des_standard(1, home=home);}
+    else if (row == 3 && width == 1.25) {des_standard(8);}
+    else if (row == 3 && width == 1.5 ) {des_standard(12);}
+    else if (row == 3 && width == 1.75) {des_standard(16);}
+
+    else if (row == 4 && width == 1   ) {des_standard(0);}
+    else if (row == 4 && width == 1.25) {des_standard(7);}
+    else if (row == 4 && width == 1.5 ) {des_standard(11);}
+    else if (row == 4 && width == 1.75) {des_standard(15);}
+
+    else if (row == 5 && width == 1   ) {des_standard(4);}
     else if (row == 5 && width == 1.25) {des_standard(6);}
-    else if (row == 5 && width == 1.5)  {des_standard(10);}
+    else if (row == 5 && width == 1.5 ) {des_standard(10);}
     else if (row == 5 && width == 1.75) {des_standard(14);}
-    else if (row == 5 && width == 2)    {des_standard(18);}
+    else if (row == 5 && width == 2   ) {des_standard(18);}
     else if (row == 5 && width == 2.25) {des_standard(23);}
     else if (row == 5 && width == 2.75) {des_standard(31);}
 }
