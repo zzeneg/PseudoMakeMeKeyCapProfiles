@@ -29,8 +29,8 @@ wallthickness = 1.5;
 topthickness  = 3;   //
 stepsize      = 50;  //resolution of Trajectory
 step          = 2;   //resolution of ellipes
-fn            = 32;  //resolution of Rounded Rectangles: 60 for output
-layers        = 40;  //resolution of vertical Sweep: 50 for output
+fn            = 60;  //resolution of Rounded Rectangles: 60 for output
+layers        = 60;  //resolution of vertical Sweep: 50 for output
 dotRadius     = 1.25;   //home dot size
 
 // roll for trajectories

@@ -10,20 +10,17 @@ use <skin.scad>
 Version 2: Eliptical Rectangle
 
 */
-for (i = [0:24]) {
-    translate([i * 20, 0, 0])
-    mirror([0,0,0])keycap(
-      keyID  = i, //change profile refer to KeyParameters Struct
-      cutLen = 0, //Don't change. for chopped caps
-      Stem   = true, //tusn on shell and stems
-      Dish   = true, //turn on dish cut
-      Stab   = 0,
-      visualizeDish = false, // turn on debug visual of Dish
-      crossSection  = false, // center cut to check internal
-      homeDot = false, //turn on homedots
-      Legends = false
-     );
-}
+mirror([0,0,0])keycap(
+  keyID  = i, //change profile refer to KeyParameters Struct
+  cutLen = 0, //Don't change. for chopped caps
+  Stem   = true, //tusn on shell and stems
+  Dish   = true, //turn on dish cut
+  Stab   = 0,
+  visualizeDish = false, // turn on debug visual of Dish
+  crossSection  = false, // center cut to check internal
+  homeDot = false, //turn on homedots
+  Legends = false
+ );
 
 /*corne thumb hi pro*/
 //color("royalblue")translate([-0,33,0]){
@@ -57,8 +54,8 @@ wallthickness = 2; // 1.5 for norm, 1.25 for cast master
 topthickness  = 2.5;   // 3 for norm, 2.5 for cast master
 stepsize      = 50;  //resolution of Trajectory
 step          = 6;   //resolution of ellipes
-fn            = 16;  //resolution of Rounded Rectangles: 60 for output
-layers        = 30;  //resolution of vertical Sweep: 50 for output
+fn            = 60;  //resolution of Rounded Rectangles: 60 for output
+layers        = 60;  //resolution of vertical Sweep: 50 for output
 dotRadius     = 1.25;   //home dot size
 //---Stem param
 Tol    = 0.00;
@@ -73,22 +70,22 @@ stemLayers      = 50; //resolution of stem to cap top transition
 keyParameters = //keyParameters[KeyID][ParameterID]
 [
 //  BotWid, BotLen, TWDif, TLDif, keyh, WSft, LSft  XSkew, YSkew, ZSkew, WEx, LEx, CapR0i, CapR0f, CapR1i, CapR1f, CapREx, StemEx
-//corne thumb high pro
+//corne thumb high pro 0~2
     [17.16,  26.66,     6, 	   7,   12,    0,    0,   -0,    10,    -5,   2,   2,      1,   4.85,      1,      3,     2,       2], //R5 1.5 Corne thumb
     [17.16,  17.16,     4, 	   5,   11,    0,    0,   -0,     5,     0,   2,   2,      1,      5,      1,      3,     2,       2], //R5  corne thumb
     [17.16,  17.16,     4, 	   6,   13,    0,    0,   -0,    10,    15,   2,   2,      1,      5,      1,      2,     2,       2], //R5  corne thumb
-//Low profile corne thumb 3
+//Low profile corne thumb 3 3~7
     [17.16,  26.66,     6, 	   7, 9.0,    0,    0,    -8,    10,    -5,   2,   2,      1,   4.85,      1,      3,     2,       2], //T1R5  external rot 3
     [17.16,  26.66,     6, 	   7, 9.0,    0,    0,    -8,    10,    -0,   2,   2,      1,   4.85,      1,      3,     2,       2], //T1R5  nuetral
     [17.16,  26.66,     6, 	   7, 9.0,    0,    0,    -8,    10,     5,   2,   2,      1,   4.85,      1,      3,     2,       2], //T1R5  internal rot Corne thumb
     [17.16,  17.16,     4, 	   5, 10.,    0,    0,   -12,     5,     0,   2,   2,      1,      5,      1,      3,     2,       2], //R5  corne thumb
     [17.16,  17.16,     4, 	   6,  11,    0,    0,   -12,    10,    15,   2,   2,      1,      5,      1,      2,     2,       2], //R5  corne thumb
-//Column high sculpt 3 row system
+//Column high sculpt 3 row system 8~11
     [17.16,  17.16,   6.5, 	 6.5,10.55,    0,    0,     9,     0,     0,   2,   2,      1,      5,      1,    3.5,     2,       2], //R4 8
     [17.16,  17.16,   6.5, 	 6.5, 8.75,    0,   .5,     4,     0,     0,   2,   2,      1,      5,      1,    3.5,     2,       2], //R3 Home
     [17.16,  17.16,   6.5, 	 6.5, 9.75,    0,    0,   -13,     0,     0,   2,   2,      1,      5,      1,    3.5,     2,       2], //R2
     [17.16,  17.16,   6.5, 	 6.5, 8.75,    0,    0,     4,     0,     0,   2,   2,      1,      5,      1,    3.5,     2,       2], //R3 deepdish
- //kyria Thumbs   13 ~ 19
+ //kyria Thumbs   12 ~ 18
     [17.16,  35.56,     4, 	   7, 13.5,    0,    0,    -8,     5,     0,   2,   2,      1,     6.,      1,    3.5,     2,       2], //T0R1 2u
     [17.16,  17.16,     6, 	   5,   11,  -.5,    0,    -9,     7,    10,   2,   2,      1,      5,      1,      3,     2,       2], //T0R1 1u
     [17.16,  17.16,     6, 	   5,   13,  -.5,    0,    -9,     7,     5,   2,   2,      1,      5,      1,    3.5,     2,       2], //T0R2 1u
@@ -98,7 +95,7 @@ keyParameters = //keyParameters[KeyID][ParameterID]
     [17.16,  17.16,     4, 	   6,   13,   .5,    0,   -13,    10,    15,   2,   2,      1,      5,      1,      2,     2,       2], //T2R1
     [17.16,  17.16,     4, 	   6,   13,    0,    0,    -8,    10,    20,   2,   2,      1,      5,      1,      2,     2,       2], //T3R1
 
-//lowest profile 21-24
+//lowest profile 20-23
     [17.16,  17.16,   6.5, 	 6.5, 7.25,    0,    0,     3,     0,     0,   2,   2,      1,      5,      1,    3.5,     2,       2], //R4 6
     [17.16,  17.16,   6.5, 	 6.5,    7,    0,   .5,  .001,     0,     0,   2,   2,      1,      5,      1,    3.5,     2,       2], //R3 Home
     [17.16,  17.16,   6.5, 	 6.5, 7.25,    0, -.25,    -5,     0,     0,   2,   2,      1,      5,      1,    3.5,     2,       2], //R2

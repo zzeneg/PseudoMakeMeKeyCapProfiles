@@ -9,32 +9,28 @@ use <skin.scad>
 
 /*DES (Distorted Elliptical Saddle) Sculpted Profile for 6x3 and corne thumb
 Version 2: Eliptical Rectangle
-
 */
-for (i = [0 : 3]) {
-    translate([0, i * 19, 0])
-    mirror([0,0,0])
-    keycap(
-        keyID  = 7 + i * 4, //change profile refer to KeyParameters Struct
-        cutLen = 0, //Don't change. for chopped caps
-        Stem   = true, //tusn on shell and stems
-        Dish   = true, //turn on dish cut
-        Stab   = 0,
-        visualizeDish = false, // turn on debug visual of Dish
-        crossSection  = false, // center cut to check internal
-        homeDot = false, //turn on homedots
-        Legends = false
-    );
-}
+
+keycap(
+    keyID  = 0, //change profile refer to KeyParameters Struct
+    cutLen = 0, //Don't change. for chopped caps
+    Stem   = true, //tusn on shell and stems
+    Dish   = true, //turn on dish cut
+    Stab   = 0,
+    visualizeDish = false, // turn on debug visual of Dish
+    crossSection  = false, // center cut to check internal
+    homeDot = false, //turn on homedots
+    Legends = false
+);
 
 //#translate([0,38,13])cube([18-5.7, 18-5.7,1],center = true);
 //Parameters
 wallthickness = 2.0; // 1.5 for norm, 1.25 for cast master
-topthickness  = 2.5;   // 3 for norm, 2.5 for cast master
+topthickness  = 3;   // 3 for norm, 2.5 for cast master
 stepsize      = 40;  //resolution of Trajectory
 step          = 6;   //resolution of ellipes
 fn            = 60;  //resolution of Rounded Rectangles: 60 for output
-layers        = 50;  //resolution of vertical Sweep: 50 for output
+layers        = 60;  //resolution of vertical Sweep: 50 for output
 dotRadius     = 0.55;   //home dot size; default 0.55
 //---Stem param
 Tol    = 0.00;
