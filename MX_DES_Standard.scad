@@ -1,4 +1,4 @@
- use <scad-utils/morphology.scad> //for cheaper minwoski
+use <scad-utils/morphology.scad> //for cheaper minwoski
 use <scad-utils/transformations.scad>
 use <scad-utils/shapes.scad>
 use <scad-utils/trajectory.scad>
@@ -327,11 +327,26 @@ module keycap(keyID = 0, cutLen = 0, visualizeDish = false, rossSection = false,
         }
       }
       if(Stem == true){
-         translate([0,0,StemBrimDep])rotate(stemRot)difference(){
-          cylinder(d =5.5,KeyHeight(keyID)-StemBrimDep, $fn= 32);
-          skin(StemCurve);
-          skin(StemCurve2);
-        }
+          translate([0,0,StemBrimDep])rotate(stemRot)difference(){
+            cylinder(d =5.5,KeyHeight(keyID)-StemBrimDep, $fn= 32);
+            skin(StemCurve);
+            skin(StemCurve2);
+          }
+
+          // stabilizer for 2u+. MX spec for 2u is 23.8mm
+          if(BottomWidth(keyID) > 36) {
+              translate([23.8 / 2, 0, StemBrimDep])rotate(stemRot)difference(){
+                cylinder(d =5.5,KeyHeight(keyID)-StemBrimDep, $fn= 32);
+                skin(StemCurve);
+                skin(StemCurve2);
+              }
+
+              translate([-23.8 / 2, 0, StemBrimDep])rotate(stemRot)difference(){
+                cylinder(d =5.5,KeyHeight(keyID)-StemBrimDep, $fn= 32);
+                skin(StemCurve);
+                skin(StemCurve2);
+              }
+          }
 //        translate([0,0,-.001])skin([for (i=[0:stemLayers-1]) transform(translation(StemTranslation(i,keyID))*rotation(StemRotation(i, keyID)), rounded_rectangle_profile(StemTransform(i, keyID),fn=fn,r=StemRadius(i, keyID)))]); //Transition Support for taller profile
       }
     //cut for fonts and extra pattern for light?

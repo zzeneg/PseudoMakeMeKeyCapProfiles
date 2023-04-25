@@ -265,29 +265,35 @@ module keycap(keyID = 0, cutLen = 0, visualizeDish = false, rossSection = false,
           translate([0,0,-.001])skin([for (i=[0:layers-1]) transform(translation(InnerTranslation(i, keyID)) * rotation(CapRotation(i, keyID)), elliptical_rectangle(InnerTransform(i, keyID), b = CapRoundness(i,keyID),fn=fn))]);
         }
       }
-      if(Stem == true){
-        translate([0,0,StemBrimDep])rotate(stemRot)difference(){
-          //cylinderical Stem body
-          cylinder(d =5.5,KeyHeight(keyID)-StemBrimDep, $fn= 32);
-          skin(StemCurve);
-          skin(StemCurve2);
 
-          // generate smooth trantion to ceiling
-//          translate([0,0,-.001])skin([for (i=[0:stemLayers-1]) transform(translation(StemTranslation(i,keyID))*rotation(StemRotation(i, keyID)), elliptical_rectangle(StemTransform(i, keyID),b= StemRadius(i, keyID), fn=fn))]);
-
-//          InnerTransform(i, keyID),  = CapRoundness(i,keyID),fn=fn)
+    if(Stem == true){
+        translate([0,0,StemBrimDep])
+        rotate(stemRot)
+        difference() {
+            cylinder(d =5.5,KeyHeight(keyID)-StemBrimDep, $fn= 32);
+            skin(StemCurve);
+            skin(StemCurve2);
         }
-      }
-    //cut for fonts and extra pattern for light?
+
+        if(BottomWidth(keyID) > 36) {
+            translate([23.8 / 2, 0, StemBrimDep])
+            rotate(stemRot)
+            difference() {
+                cylinder(d =5.5,KeyHeight(keyID)-StemBrimDep, $fn= 32);
+                skin(StemCurve);
+                skin(StemCurve2);
+            }
+
+            translate([-23.8 / 2, 0, StemBrimDep])
+            rotate(stemRot)
+            difference() {
+                cylinder(d =5.5,KeyHeight(keyID)-StemBrimDep, $fn= 32);
+                skin(StemCurve);
+                skin(StemCurve2);
+            }
+        }
     }
 
-    //Cuts
-
-    //Fonts
-    if(Legends ==  true){
-          #rotate([-XAngleSkew(keyID),YAngleSkew(keyID),ZAngleSkew(keyID)])translate([-0,0,KeyHeight(keyID)-2.0])linear_extrude(height = 1)text( text = "No U", font = "Constantia:style=Bold", size = 3, valign = "center", halign = "center" );
-      //  #rotate([-XAngleSkew(keyID),YAngleSkew(keyID),ZAngleSkew(keyID)])translate([0,-3.5,0])linear_extrude(height = 0.5)text( text = "Me", font = "Constantia:style=Bold", size = 3, valign = "center", halign = "center" );
-      }
    //Dish Shape
     if(Dish == true){
      if(visualizeDish == false){
@@ -302,8 +308,9 @@ module keycap(keyID = 0, cutLen = 0, visualizeDish = false, rossSection = false,
        translate([0,-15,-.1])cube([15,30,15]);
      }
   }
-  //Homing dot
-  if(homeDot == true)translate([0,0,KeyHeight(keyID)-DishHeightDif(keyID)-.25])sphere(d = dotRadius);
+      //Homing dot
+      if(homeDot == true)translate([0,0,KeyHeight(keyID)-DishHeightDif(keyID)-.25])sphere(d = dotRadius);
+  }
 }
 
 //------------------stems
