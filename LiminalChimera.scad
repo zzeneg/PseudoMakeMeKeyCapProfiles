@@ -18,14 +18,13 @@ use <skin.scad>
      0.b.i must be resolved
 
 */
-drop = 6.5;
-//#translate([0,0,-drop])import("DES_1u_alphas/R3.stl");
-//#translate([0,16,-drop])import("DES_1u_alphas/R2.stl");
-//#translate([0,-16,-drop])import("DES_1u_alphas/R4.stl");
-////enum
+
+//enum
 Choc = 0;
 MX = 1;
 Null =2;
+spru = true;
+
 //// override Z-butt param
 //lp_key = [
 ////     "base_sx", 18.5,
@@ -43,35 +42,48 @@ Null =2;
 
 crossBool=false;
 
-//difference(){
 for(i = [0:2]){
-  translate([-32,-16*i,0])keycap(keyID = 3*i, cutLen = 0, heightAdjust = 2, Stem = MX,  Dish = true, visualizeDish = false, crossSection = crossBool, Sym = true, Rotation = 0, homeDot = false);
-  translate([-16,-16*i,0])keycap(keyID =3*i, cutLen = 0, heightAdjust = 0, Stem = MX,  Dish = true, visualizeDish = false, crossSection = crossBool, Sym = true, Rotation = 0, homeDot = false);
-  translate([0,-16*i,0])keycap(keyID =3*i, cutLen = 0, heightAdjust = 3, Stem = MX,  Dish = true, visualizeDish = false, crossSection = crossBool, Sym = true, Rotation = 0, homeDot = false);
-  translate([16,-16*i,0])keycap(keyID = 3*i+9, cutLen = 0, heightAdjust = 3,Stem = MX,  Dish = true, visualizeDish = false, crossSection = crossBool, Sym = true, Rotation = 0);
-  translate([-48,-16*i,0])keycap(keyID = 3*i+9, cutLen = 0, heightAdjust = 5,Stem = MX,  Dish = true, visualizeDish = false, crossSection = crossBool, Sym = true, Rotation = 0);
-  }
-//  translate([0,0,0])keycap(keyID = 3, cutLen = 0, Stem = MX,  Dish = true, visualizeDish = false, crossSection = crossBool, Sym = true, Rotation = 0, homeDot=false);
-//  translate([0,-16,0])keycap(keyID = 6, cutLen = 0, Stem = MX,  Dish = true, visualizeDish =false, crossSection = crossBool, Sym = true, Rotation = 0);
+  translate([-32,     0 - 16 * i, 0]) keycap(keyID = 3 * i, heightAdjust = 4, Stem = MX, crossSection = crossBool, Sym = true,  homeDot = false);
+  translate([-16,     0 - 16 * i, 0]) keycap(keyID = 3 * i, heightAdjust = 2, Stem = MX, crossSection = crossBool, Sym = true,  homeDot = false);
+  translate([0,       0 - 16 * i, 0]) keycap(keyID = 3 * i, heightAdjust = 0, Stem = MX, crossSection = crossBool, Sym = true,  homeDot = false);
+  translate([48 - 32, 0 - 16 * i, 0]) keycap(keyID = 3 * i + 9, heightAdjust = 4, Stem = MX, crossSection = crossBool, Sym = true,  homeDot = false);
+  translate([48 - 16, 0 - 16 * i, 0]) keycap(keyID = 3 * i + 9, heightAdjust = 2, Stem = MX, crossSection = crossBool, Sym = true,  homeDot = false);
+  translate([48 -  0, 0 - 16 * i, 0]) keycap(keyID = 3 * i + 9, heightAdjust = 0, Stem = MX, crossSection = crossBool, Sym = true,  homeDot = false);
+}
 
-//color("royalblue")translate([25,0,0])cube([50,50,50], center =true);
-//}
-//color("royalblue")translate([0,0,-5])cube([16,15,1], center =true);
+for(i = [0:2]){
+  translate([-32,     60 - 16 * i, 0]) keycap(keyID = 3 * i, heightAdjust = 4, Stem = Choc, crossSection = crossBool, Sym = true,  homeDot = false);
+  translate([-16,     60 - 16 * i, 0]) keycap(keyID = 3 * i, heightAdjust = 2, Stem = Choc, crossSection = crossBool, Sym = true,  homeDot = false);
+  translate([0,       60 - 16 * i, 0]) keycap(keyID = 3 * i, heightAdjust = 0, Stem = Choc, crossSection = crossBool, Sym = true,  homeDot = false);
+  translate([48 - 32, 60 - 16 * i, 0]) keycap(keyID = 3 * i + 9, heightAdjust = 4, Stem = Choc, crossSection = crossBool, Sym = true,  homeDot = false);
+  translate([48 - 16, 60 - 16 * i, 0]) keycap(keyID = 3 * i + 9, heightAdjust = 2, Stem = Choc, crossSection = crossBool, Sym = true,  homeDot = false);
+  translate([48 -  0, 60 - 16 * i, 0]) keycap(keyID = 3 * i + 9, heightAdjust = 0, Stem = Choc, crossSection = crossBool, Sym = true,  homeDot = false);
+}
+
+// spru
+if (spru) {
+    for(i = [-2:3]) {
+        translate([i * 16,  0 - 22, -1.1]) rotate([90, 0, 0]) cylinder(h = 4, r = 0.8, $fn=20);
+        translate([i * 16,  0 -  6, -1.1]) rotate([90, 0, 0]) cylinder(h = 4, r = 0.8, $fn=20);
+        translate([i * 16, 60 - 22, -1.1]) rotate([90, 0, 0]) cylinder(h = 4, r = 0.8, $fn=20);
+        translate([i * 16, 60 -  6, -1.1]) rotate([90, 0, 0]) cylinder(h = 4, r = 0.8, $fn=20);
+    }
+}
 
 //-Parameters
 wallthickness = 1.1; // 1.75 for mx size, 1.1
-topthickness = 2.5; //2 for phat 3 for chicago
-stepsize = 30;  //resolution of Trajectory
-step = 40;       //resolution of ellipes
-fn =32;          //resolution of Rounded Rectangles: 60 for output
-layers = 10;    //resolution of vertical Sweep: 50 for output
-angularSteps = 30;
+topthickness  = 2.5; //2 for phat 3 for chicago
+stepsize      = 30;  //resolution of Trajectory
+step          = 40;       //resolution of ellipes
+fn            = 60;          //resolution of Rounded Rectangles: 60 for output
+layers        = 60;    //resolution of vertical Sweep: 50 for output
+angularSteps  = 30;
 
 //---Stem param
 
 //injection param
 draftAngle = 0; //degree  note:Stem Only
-Tol    = 0.10; //stem tolarance
+Tol    = 0.00; //stem tolarance
 stemRot = 0;
 stemRad = 5.55; // stem outer radius
 stemLen = 5.55 ;
