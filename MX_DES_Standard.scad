@@ -333,8 +333,8 @@ module keycap(keyID = 0, cutLen = 0, visualizeDish = false, rossSection = false,
             skin(StemCurve2);
           }
 
-          // stabilizer for 2u+. MX spec for 2u is 23.8mm
-          if(BottomWidth(keyID) > 36) {
+          // stabilizer for >=2u. MX spec for 2u is 23.8mm
+          if(BottomWidth(keyID) > 35) {
               translate([23.8 / 2, 0, StemBrimDep])rotate(stemRot)difference(){
                 cylinder(d =5.5,KeyHeight(keyID)-StemBrimDep, $fn= 32);
                 skin(StemCurve);

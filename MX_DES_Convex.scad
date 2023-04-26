@@ -257,26 +257,17 @@ module keycap(keyID = 0, cutLen = 0, visualizeDish = false, rossSection = false,
   //builds
   difference(){
     union(){
-      difference(){
-        skin([for (i=[0:layers-1]) transform(translation(CapTranslation(i, keyID)) * rotation(CapRotation(i, keyID)), elliptical_rectangle(CapTransform(i, keyID), b = CapRoundness(i,keyID),fn=fn))]); //outer shell
+        difference(){
+          skin([for (i=[0:layers-1]) transform(translation(CapTranslation(i, keyID)) * rotation(CapRotation(i, keyID)), elliptical_rectangle(CapTransform(i, keyID), b = CapRoundness(i,keyID),fn=fn))]); //outer shell
 
-        //Cut inner shell
+          //Cut inner shell
+          if(Stem == true){
+            translate([0,0,-.001])skin([for (i=[0:layers-1]) transform(translation(InnerTranslation(i, keyID)) * rotation(CapRotation(i, keyID)), elliptical_rectangle(InnerTransform(i, keyID), b = CapRoundness(i,keyID),fn=fn))]);
+          }
+        }
+
         if(Stem == true){
-          translate([0,0,-.001])skin([for (i=[0:layers-1]) transform(translation(InnerTranslation(i, keyID)) * rotation(CapRotation(i, keyID)), elliptical_rectangle(InnerTransform(i, keyID), b = CapRoundness(i,keyID),fn=fn))]);
-        }
-      }
-
-    if(Stem == true){
-        translate([0,0,StemBrimDep])
-        rotate(stemRot)
-        difference() {
-            cylinder(d =5.5,KeyHeight(keyID)-StemBrimDep, $fn= 32);
-            skin(StemCurve);
-            skin(StemCurve2);
-        }
-
-        if(BottomWidth(keyID) > 36) {
-            translate([23.8 / 2, 0, StemBrimDep])
+            translate([0,0,StemBrimDep])
             rotate(stemRot)
             difference() {
                 cylinder(d =5.5,KeyHeight(keyID)-StemBrimDep, $fn= 32);
@@ -284,12 +275,22 @@ module keycap(keyID = 0, cutLen = 0, visualizeDish = false, rossSection = false,
                 skin(StemCurve2);
             }
 
-            translate([-23.8 / 2, 0, StemBrimDep])
-            rotate(stemRot)
-            difference() {
-                cylinder(d =5.5,KeyHeight(keyID)-StemBrimDep, $fn= 32);
-                skin(StemCurve);
-                skin(StemCurve2);
+            if(BottomWidth(keyID) > 35) {
+                translate([23.8 / 2, 0, StemBrimDep])
+                rotate(stemRot)
+                difference() {
+                    cylinder(d =5.5,KeyHeight(keyID)-StemBrimDep, $fn= 32);
+                    skin(StemCurve);
+                    skin(StemCurve2);
+                }
+
+                translate([-23.8 / 2, 0, StemBrimDep])
+                rotate(stemRot)
+                difference() {
+                    cylinder(d =5.5,KeyHeight(keyID)-StemBrimDep, $fn= 32);
+                    skin(StemCurve);
+                    skin(StemCurve2);
+                }
             }
         }
     }
@@ -304,12 +305,13 @@ module keycap(keyID = 0, cutLen = 0, visualizeDish = false, rossSection = false,
       #translate([-TopWidShift(keyID),-TopLenShift(keyID),KeyHeight(keyID)-DishHeightDif(keyID)])rotate([0,-YAngleSkew(keyID),0])rotate([0,-90-XAngleSkew(keyID),270-ZAngleSkew(keyID)])skin(BackCurve);
      }
    }
-     if(crossSection == true) {
+
+    if(crossSection == true) {
        translate([0,-15,-.1])cube([15,30,15]);
      }
-  }
-      //Homing dot
-      if(homeDot == true)translate([0,0,KeyHeight(keyID)-DishHeightDif(keyID)-.25])sphere(d = dotRadius);
+
+     //Homing dot
+     if(homeDot == true)translate([0,0,KeyHeight(keyID)-DishHeightDif(keyID)-.25])sphere(d = dotRadius);
   }
 }
 
