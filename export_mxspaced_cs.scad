@@ -1,4 +1,4 @@
-use <Choc_Chicago_Steno_Fat.scad>
+use <MX_Chicago_Steno.scad>
 spru_n = 0;
 spacing = 19.0 ;
 spru_radius = 0.8;
