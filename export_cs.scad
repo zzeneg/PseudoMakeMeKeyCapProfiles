@@ -1,21 +1,23 @@
 use <Choc_Chicago_Steno.scad>
-spru_n = 0;
-spacing = 19.0 ;
+spru_n = 2;
+spacing = 18.0 ;
 spru_radius = 0.8;
 
 union() {
-    translate([0, -spacing * 1, 0])  cs_spru(row=2);
-//    translate([0, -spacing * 1, 0])  cs_spru(row=2, width=1.25);
-//    translate([0, -spacing * 2, 0])  cs_spru(row=2, width=1.50);
-//    translate([0, -spacing * 3, 0])  cs_spru(row=2, width=1.75);
-//    translate([0, -spacing * 4, 0])  cs_spru(row=2, width=2.00);
-//    translate([0, -spacing * 5, 0])  cs_spru(row=2, width=2.25);
+
     translate([0, -spacing * 0, 0])  cs_spru(row=3);
-//    translate([0, -spacing * 1, 0])  cs_spru(row=3, width=1.25);
-//    translate([0, -spacing * 2, 0])  cs_spru(row=3, width=1.50);
-//    translate([0, -spacing * 3, 0])  cs_spru(row=3, width=1.75);
-//    translate([0, -spacing * 4, 0])  cs_spru(row=3, width=2.00);
-//    translate([0, -spacing * 5, 0])  cs_spru(row=3, width=2.25);
+    translate([0, -spacing * 1, 0])  cs_spru(row=3, width=1.25);
+    translate([0, -spacing * 2, 0])  cs_spru(row=3, width=1.50);
+    translate([0, -spacing * 3, 0])  cs_spru(row=3, width=1.75);
+    translate([0, -spacing * 4, 0])  cs_spru(row=3, width=2.00);
+    translate([0, -spacing * 5, 0])  cs_spru(row=3, width=2.25);
+
+    translate([0, -spacing * 7, 0])  cs_spru(row=2);
+    translate([0, -spacing * 8, 0])  cs_spru(row=2, width=1.25);
+    translate([0, -spacing * 9, 0])  cs_spru(row=2, width=1.50);
+    translate([0, -spacing * 10, 0])  cs_spru(row=2, width=1.75);
+    translate([0, -spacing * 11, 0])  cs_spru(row=2, width=2.00);
+    translate([0, -spacing * 12, 0])  cs_spru(row=2, width=2.25);
 }
 
 module cs_spru(row, dot=false, n=spru_n, width=1, radius=spru_radius) {
@@ -67,7 +69,7 @@ module cs_default(keyID, dot=false) {
         keyID  = keyID, //change profile refer to KeyParameters Struct
         Stem   = true, //turns on shell and stems
         Dish = true,
-        visualizeDish=true,
+        visualizeDish=false,
         crossSection=false,
         homeDot = dot, //turns on homedots
     );
