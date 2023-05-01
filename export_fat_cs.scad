@@ -67,7 +67,7 @@ module cs_default(keyID, dot=false) {
         keyID  = keyID, //change profile refer to KeyParameters Struct
         Stem   = true, //turns on shell and stems
         Dish = true,
-        visualizeDish=true,
+        visualizeDish=false,
         crossSection=false,
         homeDot = dot, //turns on homedots
     );
