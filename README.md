@@ -3,7 +3,8 @@
 ## What the fork
 
 * scripts to generate CS, DES, and Liminal Chimera keycaps
-* sprued stls for MJF/SLS printing
+* sprued stls packs for MJF/SLS printing
+* adding 1.25 to 2.25u Choc CS regular and convex caps
 
 ## How to
 * make sure OpenSCAD is up to date.
