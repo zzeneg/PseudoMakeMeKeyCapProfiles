@@ -11,7 +11,7 @@ use <skin.scad>
 
 /*Tester */
 keycap(
-  keyID  = 1, //change profile refer to KeyParameters Struct
+  keyID  = 6, //change profile refer to KeyParameters Struct
   cutLen = 0, //Don't change. for chopped caps
   Stem   = true, //tusn on shell and stems
   StemRot = 0, //change stem orientation by deg
@@ -19,7 +19,8 @@ keycap(
   Stab   = 0,
   visualizeDish = false, // turn on debug visual of Dish
   crossSection  = false, // center cut to check internal
-  homeDot = false, //turn on homedots
+  homeDot = false, //turn on homedots,
+  homeBar = true, //turn on homebar,
   Legends = false
   );
 
@@ -27,7 +28,7 @@ keycap(
 wallthickness = 1.1; // 1.75 for mx size, 1.1
 topthickness = 3.0; //2 for phat 3 for chicago
 stepsize = 20;  //resolution of Trajectory
-step = 2;       //resolution of ellipes
+step = 1;       //resolution of ellipes
 fn = 60;          //resolution of Rounded Rectangles: 60 for output
 layers = 50;    //resolution of vertical Sweep: 50 for output
 
@@ -256,7 +257,8 @@ function StemRadius(t, keyID) = pow(t/stemLayers,3)*3 + (1-pow(t/stemLayers, 3))
 
 
 ///----- KEY Builder Module
-module keycap(keyID = 0, cutLen = 0, visualizeDish = false, crossSection = false, Dish = true, Stem = false, StemRot = 0, homeDot = false, Stab = 0, Legends = false) {
+module keycap(keyID = 0, cutLen = 0, visualizeDish = false, crossSection = false, Dish = true, Stem = false, StemRot = 0, homeDot = false, homeBar = false, Stab = 0, Legends = false) {
+  $fn = fn;
 
   //Set Parameters for dish shape
   FrontPath = quantize_trajectories(FrontTrajectory(keyID), steps = stepsize, loop=false);
@@ -314,12 +316,33 @@ module keycap(keyID = 0, cutLen = 0, visualizeDish = false, crossSection = false
        translate([0,-25,-.1])cube([15,50,15]);
      }
   }
-  //Homing dot
+
   if(homeDot == true){
-    translate([2,-4.5,KeyHeight(keyID)-DishHeightDif(keyID)+.15])sphere(d = 1);
-    translate([-2,-4.5,KeyHeight(keyID)-DishHeightDif(keyID)+.15])sphere(d = 1);
+      r = 0.5;
+      x = 2;
+      y = -4.5;
+      z = KeyHeight(keyID)-DishHeightDif(keyID) + 0.3 * r;
+
+      translate([x, y, z])sphere(r);
+      translate([-x, y, z])sphere(r);
   }
-}
+
+  if(homeBar == true) {
+    homey = -4.5;
+    homez = KeyHeight(keyID)-DishHeightDif(keyID) + 0.15;
+    l = 5.5;
+    r = 0.5;
+
+    translate([0, homey, homez])
+    rotate([0,90,0])
+    translate([0, 0, -l / 2])
+    union () {
+        translate([0, 0, r]) sphere(r = r);
+        translate([0, 0, r])cylinder(h = l -r * 2, r= r);
+        translate([0, 0, l - r])sphere(r = r);
+    };
+  };
+};
 
 //------------------stems
 $fn = fn;
