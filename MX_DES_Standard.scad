@@ -12,7 +12,7 @@ Version 2: Eliptical Rectangle
 */
 
 keycap(
-    keyID  = 0, //change profile refer to KeyParameters Struct
+    keyID  = 1, //change profile refer to KeyParameters Struct
     cutLen = 0, //Don't change. for chopped caps
     Stem   = true, //tusn on shell and stems
     Dish   = true, //turn on dish cut
@@ -20,6 +20,7 @@ keycap(
     visualizeDish = false, // turn on debug visual of Dish
     crossSection  = false, // center cut to check internal
     homeDot = false, //turn on homedots
+    homeRing = false, //turn on homing rings
     Legends = false
 );
 
@@ -27,10 +28,10 @@ keycap(
 //Parameters
 wallthickness = 2.0; // 1.5 for norm, 1.25 for cast master
 topthickness  = 3;   // 3 for norm, 2.5 for cast master
-stepsize      = 40;  //resolution of Trajectory
-step          = 6;   //resolution of ellipes
+stepsize      = 60;  //resolution of Trajectory
+step          = 0.5;   //resolution of ellipes
 fn            = 60;  //resolution of Rounded Rectangles: 60 for output
-layers        = 60;  //resolution of vertical Sweep: 50 for output
+layers        = 50;  //resolution of vertical Sweep: 50 for output
 dotRadius     = 0.55;   //home dot size; default 0.55
 //---Stem param
 Tol    = 0.00;
@@ -302,7 +303,18 @@ function StemRadius(t, keyID) = pow(t/stemLayers,3)*3 + (1-pow(t/stemLayers, 3))
 
 
 ///----- KEY Builder Module
-module keycap(keyID = 0, cutLen = 0, visualizeDish = false, rossSection = false, Dish = true, Stem = false, crossSection = true,Legends = false, homeDot = false, Stab = 0) {
+module keycap(
+    keyID = 0,
+    cutLen = 0,
+    visualizeDish = false,
+    Dish = true,
+    Stem = false,
+    crossSection = true,
+    Legends = false,
+    homeDot = false,
+    homeRing = true,
+    Stab = 0
+) {
 
   //Set Parameters for dish shape
   FrontPath = quantize_trajectories(FrontTrajectory(keyID), steps = stepsize, loop=false, start_position= $t*4);
@@ -397,6 +409,19 @@ module keycap(keyID = 0, cutLen = 0, visualizeDish = false, rossSection = false,
 //      }
     }
 
+    if (homeRing == true) {
+        z = KeyHeight(keyID)-DishHeightDif(keyID) - 0.3;
+
+        #rotate([ - XAngleSkew(keyID) * 0.5, -YAngleSkew(keyID), ZAngleSkew(keyID)])
+        translate([0, 0, z])
+
+        for (i = [0:3]) {
+            translate([0, 0, i * 0.15])
+            rotate_extrude(convexity = 10, $fn = 100)
+            translate([i * 1.3, 0, 0])
+            circle(r = .3, $fn = 100);
+        }
+    }
 
 }
 //------------------stems
