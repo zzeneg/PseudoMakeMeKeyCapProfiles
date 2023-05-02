@@ -27,8 +27,8 @@ keycap(
 //-Parameters
 wallthickness = 1.1; // 1.75 for mx size, 1.1
 topthickness = 3.0; //2 for phat 3 for chicago
-stepsize = 20;  //resolution of Trajectory
-step = 1;       //resolution of ellipes
+stepsize = 50;  //resolution of Trajectory
+step = 0.5;       //resolution of ellipes
 fn = 60;          //resolution of Rounded Rectangles: 60 for output
 layers = 50;    //resolution of vertical Sweep: 50 for output
 

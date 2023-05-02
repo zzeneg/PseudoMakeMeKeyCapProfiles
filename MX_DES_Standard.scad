@@ -312,7 +312,7 @@ module keycap(
     crossSection = true,
     Legends = false,
     homeDot = false,
-    homeRing = true,
+    homeRing = false,
     Stab = 0
 ) {
 
