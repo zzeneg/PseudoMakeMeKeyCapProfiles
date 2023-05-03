@@ -13,7 +13,7 @@ Version 2: Eliptical Rectangle
 //NOTE: with sweep cuts, top surface may not be visible in review, it should be visible once rendered
 
 mirror([0,0,0])keycap(
-  keyID  = 11, //change profile refer to KeyParameters Struct
+  keyID  = 12, //change profile refer to KeyParameters Struct
   cutLen = 0, //Don't change. for chopped caps
   Stem   = true, //tusn on shell and stems
   Dish   = true, //turn on dish cut
@@ -28,9 +28,9 @@ mirror([0,0,0])keycap(
 wallthickness = 1.5;
 topthickness  = 3;   //
 stepsize      = 50;  //resolution of Trajectory
-step          = 2;   //resolution of ellipes
-fn            = 20;  //resolution of Rounded Rectangles: 60 for output
-layers        = 20;  //resolution of vertical Sweep: 50 for output
+step          = 0.5;   //resolution of ellipes
+fn            = 60;  //resolution of Rounded Rectangles: 60 for output
+layers        = 50;  //resolution of vertical Sweep: 50 for output
 dotRadius     = 1.25;   //home dot size
 
 // roll for trajectories
@@ -57,7 +57,7 @@ keyParameters = //keyParameters[KeyID][ParameterID]
     [35.46,  17.16,   6.5, 	 6.5, 11.0,    0,    0,   -10,     0,     0,   2,   2,      1,      5,      1,    3.5,     2,       2], //R5 2u
     [17.16,  17.16,   6.5, 	 6.5,    9,    0,    0,     3,     0,     0,   2,   2,      1,      5,      1,    3.5,     2,       2], //R3 Home
     [35.56,   6.5, 	 6.5,  8.6,    0,    0,    -8,     0,     0,   2,   2,      1,      5,      1,    3.5,     2,       2], //R5 2u low pro 3
-//normie hi-sculpt 4 row system  4~11
+//normie hi-sculpt 4 row system  4~12
     [17.16,  17.16,   6.5, 	 6.5, 11.0,    0,    0,    -9,     0,     0,   2,   2,      1,      5,      1,    3.5,     2,       2], //R5  4
     [22.26,  17.16,   6.5, 	 6.5, 11.0,    0,    0,    -9,     0,     0,   2,   2,      1,      5,      1,    3.5,     2,       2], //R5 1.25u
     [26.66,  17.16,   6.5, 	 6.5, 11.0,    0,    0,    -9,     0,     0,   2,   2,      1,      5,      1,    3.5,     2,       2], //R5 1.5u
@@ -66,6 +66,7 @@ keyParameters = //keyParameters[KeyID][ParameterID]
     [40.86,  17.16,   6.5, 	 6.5, 11.0,    0,    0,    -9,     0,     0,   2,   2,      1,      5,      1,    3.5,     2,       2], //R5 2.25u
     [50.66,  17.16,   6.5, 	 6.5, 11.0,    0,    0,    -9,     0,     0,   2,   2,      1,      5,      1,    3.5,     2,       2], //R5 2.75u
     [55.36,  17.16,   6.5, 	 6.5, 11.0,    0,    0,    -9,     0,     0,   2,   2,      1,      5,      1,    3.5,     2,       2], //R5 3.00u
+    [74.31,  17.16,   6.5, 	 6.5, 11.0,    0,    0,    -9,     0,     0,   2,   2,      1,      5,      1,    3.5,     2,       2], //R5 4.00u
 //normie  mild  4 row system 12~16
     [17.16,  17.16,    6.5, 	 6.5, 10.3,    0,    0,    -9,     0,     0,   2,   2,      1,      5,      1,    3.5,     2,       2], //R5
     [22.26,  17.16,    6.5, 	 6.5, 10.3,    0,    0,    -9,     0,     0,   2,   2,      1,      5,      1,    3.5,     2,       2], //R5
@@ -95,6 +96,7 @@ dishParameters = //dishParameter[keyID][ParameterID]
   [   4,    3,  -10,  -20,    1.5,      4,  19.5,    20,     2,        4,    3,  -10,  -30,   19.5,    20,     2], //R5 2.25u
   [   4,    3,  -10,  -20,    1.5,      4,  24.5,  24.5,     2,        4,    3,  -10,  -30,   24.5,  24.5,     2], //R5 2.75u
   [   4,    3,  -10,  -20,    1.5,      4,  27.0,  27.5,     2,        4,    3,  -10,  -30,   27.0,  27.5,     2], //R5 3.00u
+  [   4,    3,  -10,  -20,    1.5,      4,  36.2,  36.8,     2,        4,    3,  -10,  -30,   36.2,  36.8,     2], //R5 4.00u
 //normie hi-sculpt 4 row system  17~24
   [   4,    3,  -10,  -20,    1.5,      4,   8.2,     9,     2,        4,    3,  -10,  -30,    8.2,     9,     2], //R5
   [   4,    3,  -10,  -20,    1.5,      4,  10.2,    11,     2,        4,    3,  -10,  -30,   10.2,    11,     2],//R5 1.25u
@@ -296,7 +298,7 @@ module keycap(keyID = 0, cutLen = 0, visualizeDish = false, rossSection = false,
             }
 
             // stab for 3u
-            if(BottomWidth(keyID) > 51) {
+            if(BottomWidth(keyID) > 51 && BottomWidth(keyID) < 58) {
                 translate([38.1 / 2, 0, StemBrimDep])
                 rotate(stemRot)
                 difference() {
@@ -306,6 +308,25 @@ module keycap(keyID = 0, cutLen = 0, visualizeDish = false, rossSection = false,
                 }
 
                 translate([-38.1 / 2, 0, StemBrimDep])
+                rotate(stemRot)
+                difference() {
+                    cylinder(d =5.5,KeyHeight(keyID)-StemBrimDep, $fn= 32);
+                    skin(StemCurve);
+                    skin(StemCurve2);
+                }
+            }
+
+            // stab for 4u
+            if(BottomWidth(keyID) > 70 && BottomWidth(keyID) < 78) {
+                translate([57.15 / 2, 0, StemBrimDep])
+                rotate(stemRot)
+                difference() {
+                    cylinder(d =5.5,KeyHeight(keyID)-StemBrimDep, $fn= 32);
+                    skin(StemCurve);
+                    skin(StemCurve2);
+                }
+
+                translate([-57.15 / 2, 0, StemBrimDep])
                 rotate(stemRot)
                 difference() {
                     cylinder(d =5.5,KeyHeight(keyID)-StemBrimDep, $fn= 32);
