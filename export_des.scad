@@ -40,7 +40,7 @@ des_spru(row=row, width=width);
 //    translate([0, -19 * 27, 0])  des_spru(row=3, deepdish=false);
 //}
 
-module des_spru(row, dot=false, deepdish=false, n=spru_n, width=1, radius=spru_radius, ring=ring) {
+module des_spru(row, dot=false, deepdish=false, n=spru_n, width=1, radius=spru_radius, ring=false) {
     echo ("Row", row, "width", width);
     union() {
         for (i = [0 : n - 1]){
@@ -57,7 +57,7 @@ module des_spru(row, dot=false, deepdish=false, n=spru_n, width=1, radius=spru_r
     }
 }
 
-module des_keycap(row, width=1, dot=false, deepdish=false) {
+module des_keycap(row, width=1, dot=false, deepdish=false, ring=false) {
     if      (row == 1) {rotate([0, 0, 180]) des_standard(5);}
 
     else if (row == 2 && width == 1   ) {des_standard(2);}
