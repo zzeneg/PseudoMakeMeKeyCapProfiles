@@ -1,6 +1,6 @@
-use <scad-utils/linalg.scad>
-use <scad-utils/transformations.scad>
-use <scad-utils/lists.scad>
+use <./scad-utils/linalg.scad>
+use <./scad-utils/transformations.scad>
+use <./scad-utils/lists.scad>
 
 function rotation_from_axis(x,y,z) = [[x[0],y[0],z[0]],[x[1],y[1],z[1]],[x[2],y[2],z[2]]]; 
 

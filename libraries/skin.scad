@@ -1,5 +1,5 @@
-use <scad-utils/transformations.scad>
-use <scad-utils/lists.scad>
+use <./scad-utils/transformations.scad>
+use <./scad-utils/lists.scad>
 
 // Skin a set of profiles with a polyhedral mesh
 module skin(profiles, loop=false /* unimplemented */) {

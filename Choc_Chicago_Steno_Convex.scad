@@ -1,10 +1,10 @@
-use <scad-utils/morphology.scad> //for cheaper minwoski
-use <scad-utils/transformations.scad>
-use <scad-utils/shapes.scad>
-use <scad-utils/trajectory.scad>
-use <scad-utils/trajectory_path.scad>
-use <sweep.scad>
-use <skin.scad>
+use <./libraries/scad-utils/morphology.scad> //for cheaper minwoski
+use <./libraries/scad-utils/transformations.scad>
+use <./libraries/scad-utils/shapes.scad>
+use <./libraries/scad-utils/trajectory.scad>
+use <./libraries/scad-utils/trajectory_path.scad>
+use <./libraries/sweep.scad>
+use <./libraries/skin.scad>
 //use <z-butt.scad>
 
 //NOTE: with sweep cuts, top surface may not be visible in review, it should be visible once rendered
