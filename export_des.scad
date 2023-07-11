@@ -50,7 +50,7 @@ module des_spru(row, dot=false, deepdish=false, n=spru_n, width=1, radius=spru_r
         }
 
         for (i = [0 : n - 1 - 1]){
-            translate([width * spacing / 2 - 3, 5, - 0.8 * spru_radius])
+            translate([i * width * spacing + spacing / 2 - 3, 5, -0.8 * spru_radius])
             rotate([0, 90, 0])
             cylinder(h = 6, r = spru_radius, $fn=20);
         }

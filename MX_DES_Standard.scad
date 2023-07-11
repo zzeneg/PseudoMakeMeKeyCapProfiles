@@ -40,8 +40,10 @@ stemWid = 7.55;
 stemLen = 5.55 ;
 stemCrossHeight = 4;
 extra_vertical  = 0.6;
-StemBrimDep     = 1;
+StemBrimDep     = 0;
 stemLayers      = 50; //resolution of stem to cap top transition
+
+heightDelta = -1;
 
 keyParameters = //keyParameters[KeyID][ParameterID]
 [
@@ -190,7 +192,7 @@ function BottomWidth(keyID)  = keyParameters[keyID][0];  //
 function BottomLength(keyID) = keyParameters[keyID][1];  //
 function TopWidthDiff(keyID) = keyParameters[keyID][2];  //
 function TopLenDiff(keyID)   = keyParameters[keyID][3];  //
-function KeyHeight(keyID)    = keyParameters[keyID][4];  //
+function KeyHeight(keyID)    = keyParameters[keyID][4] + heightDelta;  //
 function TopWidShift(keyID)  = keyParameters[keyID][5];
 function TopLenShift(keyID)  = keyParameters[keyID][6];
 function XAngleSkew(keyID)   = keyParameters[keyID][7];

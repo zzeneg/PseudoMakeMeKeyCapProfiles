@@ -1,25 +1,28 @@
 use <MX_DES_Thumb.scad>
 
+spacing = 19.05;
+spru_radius = 0.8;
+
+// start = 0; end = 2;
+// start = 3; end = 7;
+// start = 8; end = 11;
+// start = 12; end = 18;
+// start = 20; end = 23;
+start = 24; end = 26;
+
 union() {
-    for (i = [0:2]) {
-        translate([19 * i, 0, 0]) des_default(keyID=i);
+    for (i = [start : end]) {
+        des_spru(i);
+        mirror([1, 0, 0]) des_spru(i);
     }
+}
 
-    for (i = [3:7]) {
-        translate([19 * (i + 1), 0, 0]) des_default(keyID=i);
-    }
+module des_spru(keyID) {
+    translate([19 * (keyID - start) + spacing/2, 0, 0]) des_default(keyID);
 
-    for (i = [8:11]) {
-        translate([19 * (i + 2), 0, 0]) des_default(keyID=i);
-    }
-
-    for (i = [12:18]) {
-        translate([19 * (i + 3), 0, 0]) des_default(keyID=i);
-    }
-
-    for (i = [20:23]) {
-        translate([19 * (i + 4), 0, 0]) des_default(keyID=i);
-    }
+    translate([(keyID - start) * spacing - 3, 5, -0.8 * spru_radius])
+    rotate([0, 90, 0])
+    cylinder(h = 6, r = spru_radius, $fn=20);
 }
 
 module des_default(keyID, home=false) {

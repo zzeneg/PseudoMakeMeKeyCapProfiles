@@ -50,22 +50,24 @@ mirror([0,0,0])keycap(
 //#translate([0,38,13])cube([18-5.7, 18-5.7,1],center = true);
 //echo(len(keyParameters));
 //Parameters
-wallthickness = 2; // 1.5 for norm, 1.25 for cast master
-topthickness  = 2.5;   // 3 for norm, 2.5 for cast master
-stepsize      = 50;  //resolution of Trajectory
-step          = 6;   //resolution of ellipes
+wallthickness = 2.0; // 1.5 for norm, 1.25 for cast master
+topthickness  = 3;   // 3 for norm, 2.5 for cast master
+stepsize      = 60;  //resolution of Trajectory
+step          = 0.5;   //resolution of ellipes
 fn            = 60;  //resolution of Rounded Rectangles: 60 for output
-layers        = 60;  //resolution of vertical Sweep: 50 for output
-dotRadius     = 1.25;   //home dot size
+layers        = 50;  //resolution of vertical Sweep: 50 for output
+dotRadius     = 0.55;   //home dot size; default 0.55
 //---Stem param
 Tol    = 0.00;
 stemRot = 0;
-stemWid = 7.2;
-stemLen = 5.5;
+stemWid = 7.55;
+stemLen = 5.55 ;
 stemCrossHeight = 4;
 extra_vertical  = 0.6;
-StemBrimDep     = 0.25;
+StemBrimDep     = 0;
 stemLayers      = 50; //resolution of stem to cap top transition
+
+heightDelta = -1;
 
 keyParameters = //keyParameters[KeyID][ParameterID]
 [
@@ -100,6 +102,11 @@ keyParameters = //keyParameters[KeyID][ParameterID]
     [17.16,  17.16,   6.5, 	 6.5,    7,    0,   .5,  .001,     0,     0,   2,   2,      1,      5,      1,    3.5,     2,       2], //R3 Home
     [17.16,  17.16,   6.5, 	 6.5, 7.25,    0, -.25,    -5,     0,     0,   2,   2,      1,      5,      1,    3.5,     2,       2], //R2
     [17.16,  17.16,   6.5, 	 6.5,    7,    0,   .5,  .001,     0,     0,   2,   2,      1,      5,      1,    3.5,     2,       2], //R3 deepdish
+
+//Ergo 1U 24-26
+    [17.16,  17.16,     4, 	   6,  10,    0,    0,   -12,    -5,   -10,   2,   2,      1,      5,      1,      2,     2,       2],
+    [17.16,  17.16,     4, 	   5,   9,    0,    0,   -12,     5,     0,   2,   2,      1,      5,      1,      3,     2,       2],
+    [17.16,  17.16,     4, 	   6,  11,    0,    0,   -12,    10,    15,   2,   2,      1,      5,      1,      2,     2,       2],
 ];
 
 dishParameters = //dishParameter[keyID][ParameterID]
@@ -135,6 +142,11 @@ dishParameters = //dishParameter[keyID][ParameterID]
   [   5,  3.8,    8,  -55,      5,    1.8,   8.5,    15,     2,        5,  4.2,    8,  -55,    8.5,    15,     2], //R3
   [   6,    3,   10,  -50,      5,    1.8,   8.8,    15,     2,        6,    4,   13,   30,    8.8,    16,     2], //R2
   [5.25,  3.,   16,  -55,      5,    1.8,   8.5,    15,     2,       5.25,  3.1,   16,  -55,    8.5,    15,     2], //R3 deep
+
+//Ergo 1U 24-26
+  [   5,  4.8,    5,  -45,      4,    2.1,    11,    12,     2,        6,    4,   13,  -35,     11,    28,     2],
+  [   5,  4.8,    5,  -48,      5,    2.2,  10.5,    10,     2,        6,    4,   13,  -30,   10.5,    18,     2],
+  [   5,  4.8,    5,  -45,      4,    2.0,    11,    12,     2,        6,    4,   13,  -35,     11,    28,     2],
 ];
 
 function FrontForward1(keyID) = dishParameters[keyID][0];  //
@@ -158,7 +170,7 @@ function BottomWidth(keyID)  = keyParameters[keyID][0];  //
 function BottomLength(keyID) = keyParameters[keyID][1];  //
 function TopWidthDiff(keyID) = keyParameters[keyID][2];  //
 function TopLenDiff(keyID)   = keyParameters[keyID][3];  //
-function KeyHeight(keyID)    = keyParameters[keyID][4];  //
+function KeyHeight(keyID)    = keyParameters[keyID][4] + heightDelta;  //
 function TopWidShift(keyID)  = keyParameters[keyID][5];
 function TopLenShift(keyID)  = keyParameters[keyID][6];
 function XAngleSkew(keyID)   = keyParameters[keyID][7];
