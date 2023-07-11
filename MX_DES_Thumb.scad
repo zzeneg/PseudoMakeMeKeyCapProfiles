@@ -64,10 +64,8 @@ stemWid = 7.55;
 stemLen = 5.55 ;
 stemCrossHeight = 4;
 extra_vertical  = 0.6;
-StemBrimDep     = 0;
+StemBrimDep     = -0.5;
 stemLayers      = 50; //resolution of stem to cap top transition
-
-heightDelta = -1;
 
 keyParameters = //keyParameters[KeyID][ParameterID]
 [
@@ -104,9 +102,9 @@ keyParameters = //keyParameters[KeyID][ParameterID]
     [17.16,  17.16,   6.5, 	 6.5,    7,    0,   .5,  .001,     0,     0,   2,   2,      1,      5,      1,    3.5,     2,       2], //R3 deepdish
 
 //Ergo 1U 24-26
-    [17.16,  17.16,     4, 	   6,  10,    0,    0,   -12,    -5,   -10,   2,   2,      1,      5,      1,      2,     2,       2],
-    [17.16,  17.16,     4, 	   5,   9,    0,    0,   -12,     5,     0,   2,   2,      1,      5,      1,      3,     2,       2],
-    [17.16,  17.16,     4, 	   6,  11,    0,    0,   -12,    10,    15,   2,   2,      1,      5,      1,      2,     2,       2],
+    [17.16,  17.16,     4, 	   6,  8.25,    0,    0,   -12,    -5,   -10,   2,   2,      1,      5,      1,      2,     2,       2],
+    [17.16,  17.16,     4, 	   5,  7.25,    0,    0,   -12,     5,     0,   2,   2,      1,      5,      1,      3,     2,       2],
+    [17.16,  17.16,     4, 	   6,  9.25,    0,    0,   -12,    10,    15,   2,   2,      1,      5,      1,      2,     2,       2],
 ];
 
 dishParameters = //dishParameter[keyID][ParameterID]
@@ -145,8 +143,8 @@ dishParameters = //dishParameter[keyID][ParameterID]
 
 //Ergo 1U 24-26
   [   5,  4.8,    5,  -45,      4,    2.1,    11,    12,     2,        6,    4,   13,  -35,     11,    28,     2],
-  [   5,  4.8,    5,  -48,      5,    2.2,  10.5,    10,     2,        6,    4,   13,  -30,   10.5,    18,     2],
-  [   5,  4.8,    5,  -45,      4,    2.0,    11,    12,     2,        6,    4,   13,  -35,     11,    28,     2],
+  [   5,  4.8,    5,  -45,      4,    2.2,  10.5,    10,     2,        6,    4,   13,  -30,   10.5,    18,     2],
+  [   5,  4.8,    5,  -42,      4,    2.0,    11,    12,     2,        6,    4,   13,  -35,     11,    28,     2],
 ];
 
 function FrontForward1(keyID) = dishParameters[keyID][0];  //
@@ -170,7 +168,7 @@ function BottomWidth(keyID)  = keyParameters[keyID][0];  //
 function BottomLength(keyID) = keyParameters[keyID][1];  //
 function TopWidthDiff(keyID) = keyParameters[keyID][2];  //
 function TopLenDiff(keyID)   = keyParameters[keyID][3];  //
-function KeyHeight(keyID)    = keyParameters[keyID][4] + heightDelta;  //
+function KeyHeight(keyID)    = keyParameters[keyID][4];  //
 function TopWidShift(keyID)  = keyParameters[keyID][5];
 function TopLenShift(keyID)  = keyParameters[keyID][6];
 function XAngleSkew(keyID)   = keyParameters[keyID][7];
