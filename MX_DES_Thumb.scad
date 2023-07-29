@@ -11,7 +11,7 @@ Version 2: Eliptical Rectangle
 
 */
 mirror([0,0,0])keycap(
-  keyID  = i, //change profile refer to KeyParameters Struct
+  keyID  = 25, //change profile refer to KeyParameters Struct
   cutLen = 0, //Don't change. for chopped caps
   Stem   = true, //tusn on shell and stems
   Dish   = true, //turn on dish cut
@@ -50,7 +50,7 @@ mirror([0,0,0])keycap(
 //#translate([0,38,13])cube([18-5.7, 18-5.7,1],center = true);
 //echo(len(keyParameters));
 //Parameters
-wallthickness = 2.0; // 1.5 for norm, 1.25 for cast master
+wallthickness = 1.6; // 1.5 for norm, 1.25 for cast master
 topthickness  = 3;   // 3 for norm, 2.5 for cast master
 stepsize      = 60;  //resolution of Trajectory
 step          = 0.5;   //resolution of ellipes
@@ -102,9 +102,9 @@ keyParameters = //keyParameters[KeyID][ParameterID]
     [17.16,  17.16,   6.5, 	 6.5,    7,    0,   .5,  .001,     0,     0,   2,   2,      1,      5,      1,    3.5,     2,       2], //R3 deepdish
 
 //Ergo 1U 24-26
-    [17.16,  17.16,     4, 	   6,  8.25,    0,    0,   -12,    -5,   -10,   2,   2,      1,      5,      1,      2,     2,       2],
-    [17.16,  17.16,     4, 	   5,  7.25,    0,    0,   -12,     5,     0,   2,   2,      1,      5,      1,      3,     2,       2],
-    [17.16,  17.16,     4, 	   6,  9.25,    0,    0,   -12,    10,    15,   2,   2,      1,      5,      1,      2,     2,       2],
+    [17.16,  17.16,     4, 	   6,    8,    0,    0,   -10,    -5,   -10,   2,   2,      1,      5,      1,      2,     2,       2],
+    [17.16,  17.16,     4, 	   5,    7,    0,    0,   -10,     0,     0,   2,   2,      1,      5,      1,      3,     2,       2],
+    [17.16,  17.16,     4, 	   6,    8,    0,    0,   -10,     8,    12,   2,   2,      1,      5,      1,      2,     2,       2],
 ];
 
 dishParameters = //dishParameter[keyID][ParameterID]
@@ -142,9 +142,9 @@ dishParameters = //dishParameter[keyID][ParameterID]
   [5.25,  3.,   16,  -55,      5,    1.8,   8.5,    15,     2,       5.25,  3.1,   16,  -55,    8.5,    15,     2], //R3 deep
 
 //Ergo 1U 24-26
-  [   5,  4.8,    5,  -45,      4,    2.1,    11,    12,     2,        6,    4,   13,  -35,     11,    28,     2],
-  [   5,  4.8,    5,  -45,      4,    2.2,  10.5,    10,     2,        6,    4,   13,  -30,   10.5,    18,     2],
-  [   5,  4.8,    5,  -42,      4,    2.0,    11,    12,     2,        6,    4,   13,  -35,     11,    28,     2],
+  [   5,  4.4,    5,  -45,      4,    1.8,    11,    15,     2,        6,    4,   13,  -35,     11,    28,     2],
+  [   5,  4.4,    5,  -45,      4,    1.8,    11,    15,     2,        6,    4,   13,  -30,     11,    18,     2],
+  [   5,  4.6,    5,  -42,      4,    1.8,    11,    15,     2,        6,    4,   13,  -35,     11,    28,     2],
 ];
 
 function FrontForward1(keyID) = dishParameters[keyID][0];  //
@@ -345,10 +345,10 @@ module keycap(keyID = 0, cutLen = 0, visualizeDish = false, rossSection = false,
 //------------------stems
 
 MXWid = 4.03/2+Tol; //horizontal lenght
-MXLen = 4.23/2+Tol; //vertical length
+MXLen = 4.03/2+Tol; //vertical length
 
-MXWidT = 1.15/2+Tol; //horizontal thickness
-MXLenT = 1.25/2+Tol; //vertical thickness
+MXWidT = 1.10/2+Tol; //horizontal thickness
+MXLenT = 1.23/2+Tol; //vertical thickness
 
 function stem_internal(sc=1) = sc*[
 [MXLenT, MXLen],[MXLenT, MXWidT],[MXWid, MXWidT],
