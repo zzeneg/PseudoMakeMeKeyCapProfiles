@@ -50,7 +50,7 @@ mirror([0,0,0])keycap(
 //#translate([0,38,13])cube([18-5.7, 18-5.7,1],center = true);
 //echo(len(keyParameters));
 //Parameters
-wallthickness = 1.6; // 1.5 for norm, 1.25 for cast master
+wallthickness = 2.0; // 1.5 for norm, 1.25 for cast master
 topthickness  = 3;   // 3 for norm, 2.5 for cast master
 stepsize      = 60;  //resolution of Trajectory
 step          = 0.5;   //resolution of ellipes

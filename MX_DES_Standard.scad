@@ -429,10 +429,10 @@ module keycap(
 //------------------stems
 
 MXWid = 4.03/2+Tol; //horizontal lenght
-MXLen = 4.23/2+Tol; //vertical length
+MXLen = 4.03/2+Tol; //vertical length
 
-MXWidT = 1.15/2+Tol; //horizontal thickness
-MXLenT = 1.25/2+Tol; //vertical thickness
+MXWidT = 1.10/2+Tol; //horizontal thickness
+MXLenT = 1.23/2+Tol; //vertical thickness
 
 function stem_internal(sc=1) = sc*[
 [MXLenT, MXLen],[MXLenT, MXWidT],[MXWid, MXWidT],

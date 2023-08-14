@@ -1,5 +1,8 @@
 # Pseudo Make Me Key Cap Profile
 
+## Update from zzeneg
+* adding low profile version for DES compatible with KS-27/KS-33 - short skirt, tighter stems according to spec.
+
 ## What the fork
 
 * scripts to generate CS, DES, and Liminal Chimera keycaps
