@@ -6,7 +6,7 @@ spru_radius = 0.8;
 row=5;
 width=1;
 
-des_spru(row=row, width=width);
+des_spru(row=row, width=width, dot=false);
 
 //union() {
 //    translate([0, -19 *  0, 0])  des_spru(row=1);
