@@ -26,8 +26,8 @@ keycap(
 
 //#translate([0,38,13])cube([18-5.7, 18-5.7,1],center = true);
 //Parameters
-wallthickness = 1.6; // 1.5 for norm, 1.25 for cast master
-topthickness  = 3.4;   // 3 for norm, 2.5 for cast master
+wallthickness = 1.2; // 1.5 for norm, 1.25 for cast master
+topthickness  = 2.4;   // 3 for norm, 2.5 for cast master
 stepsize      = 60;  //resolution of Trajectory
 step          = 0.5;   //resolution of ellipes
 fn            = 60;  //resolution of Rounded Rectangles: 60 for output
@@ -247,18 +247,18 @@ function CapTranslation(t, keyID) =
     (t/layers*KeyHeight(keyID))    //Z shift
   ];
 
-function InnerTranslation(t, keyID, isInner=false) =
+function InnerTranslation(t, keyID) =
   [
-    ((1-t)/layers*(isInner ? 0 : TopWidShift(keyID))),   //X shift
-    ((1-t)/layers*(isInner ? -0.25 : TopLenShift(keyID))),   //Y shift
+    ((1-t)/layers*TopWidShift(keyID)),   //X shift
+    ((1-t)/layers*TopLenShift(keyID)),   //Y shift
     (t/layers*(KeyHeight(keyID)-topthickness))    //Z shift
   ];
 
-function CapRotation(t, keyID, isInner=false) =
+function CapRotation(t, keyID) =
   [
     ((1-t)/layers*XAngleSkew(keyID)),   //X shift
     ((1-t)/layers*YAngleSkew(keyID)),   //Y shift
-    ((1-t)/layers*(isInner ? 0 : ZAngleSkew(keyID)))    //Z shift
+    ((1-t)/layers*ZAngleSkew(keyID))    //Z shift
   ];
 
 function CapTransform(t, keyID) =
@@ -276,8 +276,8 @@ function CapRadius(t, keyID) = pow(t/layers, ChamExponent(keyID))*ChamfFinRad(ke
 
 function InnerTransform(t, keyID) =
   [
-    pow(t/layers, WidExponent(keyID))*(BottomWidth(keyID) -TopLenDiff(keyID)+wallthickness) + (1-pow(t/layers, WidExponent(keyID)))*(BottomWidth(keyID) -wallthickness*2),
-    pow(t/layers, LenExponent(keyID))*(BottomLength(keyID)-TopLenDiff(keyID)+wallthickness) + (1-pow(t/layers, LenExponent(keyID)))*(BottomLength(keyID)-wallthickness*2)
+    pow(t/layers, WidExponent(keyID))*(BottomWidth(keyID) -TopWidthDiff(keyID)-wallthickness*2) + (1-pow(t/layers, WidExponent(keyID)))*(BottomWidth(keyID) -wallthickness*2),
+    pow(t/layers, LenExponent(keyID))*(BottomLength(keyID)-TopLenDiff(keyID)  -wallthickness*2) + (1-pow(t/layers, LenExponent(keyID)))*(BottomLength(keyID)-wallthickness*2)
   ];
 
 function StemTranslation(t, keyID) =
@@ -337,7 +337,10 @@ module keycap(
 
         //Cut inner shell
         if(Stem == true){
-          translate([0,0,-.001])skin([for (i=[0:layers-1]) transform(translation(InnerTranslation(i, keyID, true)) * rotation(CapRotation(i, keyID, true)), elliptical_rectangle(InnerTransform(i, keyID), fn=fn))]);
+          xScale = (BottomWidth(keyID) -wallthickness*2)/BottomWidth(keyID);
+          yScale = (BottomLength(keyID)-wallthickness*2)/BottomLength(keyID);
+          zScale = (KeyHeight(keyID)-topthickness)/KeyHeight(keyID);
+          translate([0,0,-0.01])scale([xScale,yScale,zScale])keycap(keyID, crossSection = false);
         }
       }
       if(Stem == true){
