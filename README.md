@@ -1,7 +1,8 @@
 # Pseudo Make Me Key Cap Profile
 
 ## Update from zzeneg
-* adding low profile version for DES compatible with KS-27/KS-33 - short skirt, tighter stems according to spec.
+* [low profile version](https://github.com/zzeneg/PseudoMakeMeKeyCapProfiles/tree/master/stl/MX/lowprofile) - short skirt, bit tighter stems, tested in MJF Nylon (JLCPCB) with KS-33 switches (Gateron Low Profile), probably compatible with other low profiles
+* [minY version](https://github.com/zzeneg/PseudoMakeMeKeyCapProfiles/tree/minY/stl/MX/lowprofile/minY) - minimal vertical spacing (19x16mm), tested in MJF Nylon with KS-33 and regular MX switches
 
 ## What the fork
 
