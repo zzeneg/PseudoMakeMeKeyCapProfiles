@@ -50,8 +50,8 @@ mirror([0,0,0])keycap(
 //#translate([0,38,13])cube([18-5.7, 18-5.7,1],center = true);
 //echo(len(keyParameters));
 //Parameters
-wallthickness = 1.2; // 1.5 for norm, 1.25 for cast master
-topthickness  = 2.4;   // 3 for norm, 2.5 for cast master
+wallthickness = 1.2; // 1.5 for norm, 1.2 for cast master
+topthickness  = 1.6; // 2 for norm, 1.6 for cast master
 stepsize      = 60;  //resolution of Trajectory
 step          = 0.5;   //resolution of ellipes
 fn            = 60;  //resolution of Rounded Rectangles: 60 for output
@@ -306,8 +306,8 @@ module keycap(keyID = 0, cutLen = 0, visualizeDish = false, rossSection = false,
         if(Stem == true){
           xScale = (BottomWidth(keyID) -wallthickness*2)/BottomWidth(keyID);
           yScale = (BottomLength(keyID)-wallthickness*2)/BottomLength(keyID);
-          zScale = (KeyHeight(keyID)-topthickness)/KeyHeight(keyID);
-          translate([0,0,-0.01])scale([xScale,yScale,zScale])keycap(keyID, crossSection = false);
+          zScale = (KeyHeight(keyID)-DishHeightDif(keyID)-topthickness)/(KeyHeight(keyID)-DishHeightDif(keyID));
+          translate([0,0,-0.1])scale([xScale,yScale,zScale])keycap(keyID, crossSection = false);
         }
       }
       if(Stem == true){
