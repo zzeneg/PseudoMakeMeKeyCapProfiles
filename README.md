@@ -1,8 +1,12 @@
 # Pseudo Make Me Key Cap Profile
 
 ## Update from zzeneg
-* [low profile version](https://github.com/zzeneg/PseudoMakeMeKeyCapProfiles/tree/master/stl/MX/lowprofile) - short skirt, bit tighter stems, tested in MJF Nylon (JLCPCB) with KS-33 switches (Gateron Low Profile), probably compatible with other low profiles
-* [minY version](https://github.com/zzeneg/PseudoMakeMeKeyCapProfiles/tree/minY/stl/MX/lowprofile/minY) - minimal vertical spacing (19x16mm), tested in MJF Nylon with KS-33 and regular MX switches
+
+Added versions:
+
+* [low profile version](./stl/MX-LP) - shorter skirt, tested in MJF Nylon (JLCPCB) with KS-33 (Gateron Low Profile), Choc V2, Tecsee Medium and regular MX switches.
+* [minY version](./stl/MX-minY) - minimal vertical spacing (19x16mm), tested in MJF Nylon with KS-33, Tecsee Medium and regular MX switches. Not compatible with Choc V2.
+* [minY minZ version](./stl/MX-minY-minZ) - minimal vertical spacing with minimal height, tested in MJF Nylon with KS-33 and Tecsee Medium. Not compatible with Choc V2 and regular MX switches.
 
 ## What the fork
 
