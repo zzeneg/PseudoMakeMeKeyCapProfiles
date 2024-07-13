@@ -1,12 +1,12 @@
-use <MX_DES_Standard.scad>
-spru_n = 2;
+use <MX_DES_Standard-minY-minZ.scad>
+spru_n = 1;
 spacing = 19.05;
 spru_radius = 0.8;
 
 row=5;
 width=1;
 
-des_spru(row=row, width=width, dot=false);
+des_spru(row=row, width=width, dot=false, edge=false);
 
 //union() {
 //    translate([0, -19 *  0, 0])  des_spru(row=1);
@@ -40,37 +40,48 @@ des_spru(row=row, width=width, dot=false);
 //    translate([0, -19 * 27, 0])  des_spru(row=3, deepdish=false);
 //}
 
-module des_spru(row, dot=false, deepdish=false, n=spru_n, width=1, radius=spru_radius, ring=false) {
+module des_spru(row, dot=false, deepdish=false, n=spru_n, width=1, radius=spru_radius, ring=false, edge=false) {
     echo ("Row", row, "width", width);
     union() {
         for (i = [0 : n - 1]){
             translate([i * spacing * width, 0, 0])
             mirror([0,0,0])
-            des_keycap(row=row, width=width, dot=dot, deepdish=deepdish, ring=ring);
+            des_keycap(row=row, width=width, dot=dot, deepdish=deepdish, ring=ring, edge=edge);
+
+            if (edge) {
+                translate([(i + 1) * spacing * width, 0, 0])
+                mirror([1,0,0])
+                des_keycap(row=row, width=width, dot=dot, deepdish=deepdish, ring=ring, edge=edge);
+            }
         }
 
-        for (i = [0 : n - 1 - 1]){
-            translate([i * width * spacing + spacing / 2 - 3, 5, -0.8 * spru_radius])
-            rotate([0, 90, 0])
-            cylinder(h = 6, r = spru_radius, $fn=20);
+        if (n > 1 || edge) {
+            for (i = [0 : max(0, n - 2)]){
+                translate([i * width * spacing + spacing / 2 - 3, 5, -0.8 * spru_radius])
+                rotate([0, 90, 0])
+                cylinder(h = 6, r = spru_radius, $fn=20);
+            }
         }
     }
 }
 
-module des_keycap(row, width=1, dot=false, deepdish=false, ring=false) {
+module des_keycap(row, width=1, dot=false, deepdish=false, ring=false, edge=false) {
     if      (row == 1) {rotate([0, 0, 180]) des_standard(5);}
 
+    else if (row == 2 && edge) {des_standard(45);}
     else if (row == 2 && width == 1   ) {des_standard(2);}
     else if (row == 2 && width == 1.25) {des_standard(9);}
     else if (row == 2 && width == 1.5 ) {des_standard(13);}
     else if (row == 2 && width == 1.75) {des_standard(17);}
 
+    else if (row == 3 && edge) {des_standard(44);}
     else if (row == 3 && width == 1 && !deepdish) {des_standard(1, dot=dot, ring=ring);}
     else if (row == 3 && deepdish)      {des_standard(3);}
     else if (row == 3 && width == 1.25) {des_standard(8);}
     else if (row == 3 && width == 1.5 ) {des_standard(12);}
     else if (row == 3 && width == 1.75) {des_standard(16);}
 
+    else if (row == 4 && edge) {des_standard(43);}
     else if (row == 4 && width == 1   ) {des_standard(0);}
     else if (row == 4 && width == 1.25) {des_standard(7);}
     else if (row == 4 && width == 1.5 ) {des_standard(11);}
