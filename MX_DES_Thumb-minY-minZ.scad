@@ -64,7 +64,7 @@ stemWid = 7.55;
 stemLen = 5.55 ;
 stemCrossHeight = 4;
 extra_vertical  = 0.6;
-StemBrimDep     = -3.1;
+StemBrimDep     = -3.4;
 stemLayers      = 50; //resolution of stem to cap top transition
 
 heightDelta = -3;
