@@ -1,4 +1,4 @@
-use <MX_DES_Thumb.scad>
+use <MX_DES_Thumb-minY-minZ.scad>
 
 spacing = 19.05;
 spru_radius = 0.8;

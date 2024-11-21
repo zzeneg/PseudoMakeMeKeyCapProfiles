@@ -66,7 +66,8 @@ module des_spru(row, dot=false, deepdish=false, n=spru_n, width=1, radius=spru_r
 }
 
 module des_keycap(row, width=1, dot=false, deepdish=false, ring=false, edge=false) {
-    if      (row == 1) {rotate([0, 0, 180]) des_standard(5);}
+    if      (row == 1 && edge) {des_standard(46);}
+    else if (row == 1) {rotate([0, 0, 180]) des_standard(5);}
 
     else if (row == 2 && edge) {des_standard(45);}
     else if (row == 2 && width == 1   ) {des_standard(2);}
