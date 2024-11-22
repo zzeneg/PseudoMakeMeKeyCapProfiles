@@ -4,9 +4,10 @@
 
 Added versions:
 
-* [low profile version](./stl/MX-LP) - shorter skirt, tested in MJF Nylon (JLCPCB) with KS-33 (Gateron Low Profile), Choc V2, Tecsee Medium and regular MX switches.
-* [minY version](./stl/MX-minY) - minimal vertical spacing (19x16mm), tested in MJF Nylon with KS-33, Tecsee Medium and regular MX switches. Not compatible with Choc V2.
-* [minY minZ version](./stl/MX-minY-minZ) - minimal vertical spacing with minimal height, tested in MJF Nylon with KS-33, Choc V2 and Tecsee Medium. Not compatible with regular MX switches.
+* [low profile version](./stl/MX-LP) - shorter skirt for low profile compatibility
+* [minY minZ version](./stl/MX-minY-minZ) - 19x16mm spacing and reduced height, additional keycaps for edges (tilted inside)
+
+All versions are tested in MJF Nylon (JLCPCB) with **KS-33** (Gateron Low Profile), **Choc V2**, **MX** and **mid-MX** (Tecsee Medium) switches.
 
 ## What the fork
 
