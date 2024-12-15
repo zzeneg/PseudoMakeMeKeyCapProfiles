@@ -11,7 +11,7 @@ use <./libraries/skin.scad>
 
 /*Tester */
 keycap(
-  keyID  = 6, //change profile refer to KeyParameters Struct
+  keyID  = 1, //change profile refer to KeyParameters Struct
   cutLen = 0, //Don't change. for chopped caps
   Stem   = true, //tusn on shell and stems
   StemRot = 0, //change stem orientation by deg
@@ -20,7 +20,7 @@ keycap(
   visualizeDish = false, // turn on debug visual of Dish
   crossSection  = false, // center cut to check internal
   homeDot = false, //turn on homedots,
-  homeBar = true, //turn on homebar,
+  homeBar = false, //turn on homebar,
   Legends = false
   );
 

@@ -12,7 +12,7 @@ Version 2: Eliptical Rectangle
 */
 
 keycap(
-    keyID  = 1, //change profile refer to KeyParameters Struct
+    keyID  = 2, //change profile refer to KeyParameters Struct
     cutLen = 0, //Don't change. for chopped caps
     Stem   = true, //tusn on shell and stems
     Dish   = true, //turn on dish cut
@@ -35,13 +35,18 @@ layers        = 50;  //resolution of vertical Sweep: 50 for output
 dotRadius     = 0.55;   //home dot size; default 0.55
 //---Stem param
 Tol    = 0.00;
+slop    = 0.3;
 stemRot = 0;
-stemWid = 7.55;
-stemLen = 5.55 ;
+stemWid = 8;
+stemLen = 6;
 stemCrossHeight = 4;
 extra_vertical  = 0.6;
 StemBrimDep     = -3.4;
 stemLayers      = 50; //resolution of stem to cap top transition
+
+//injection param
+draftAngle = 0; //degree  note:Stem Only
+//TODO: Add wall thickness transition?
 
 heightDelta = -5.6;
 
@@ -351,11 +356,13 @@ module keycap(
         }
       }
       if(Stem == true){
-          translate([0,0,StemBrimDep])rotate(stemRot)difference(){
-            cylinder(d =5.5,KeyHeight(keyID)-StemBrimDep, $fn= 32);
-            skin(StemCurve);
-            skin(StemCurve2);
-          }
+        choc_stem();
+
+          // translate([0,0,StemBrimDep])rotate(stemRot)difference(){
+          //   cylinder(d =5.5,KeyHeight(keyID)-StemBrimDep, $fn= 32);
+          //   skin(StemCurve);
+          //   skin(StemCurve2);
+          // }
 
           // stabilizer for >=2u. MX spec for 2u is 23.8mm
           if(BottomWidth(keyID) > 35) {
@@ -371,7 +378,8 @@ module keycap(
                 skin(StemCurve2);
               }
           }
-//        translate([0,0,-.001])skin([for (i=[0:stemLayers-1]) transform(translation(StemTranslation(i,keyID))*rotation(StemRotation(i, keyID)), rounded_rectangle_profile(StemTransform(i, keyID),fn=fn,r=StemRadius(i, keyID)))]); //Transition Support for taller profile
+      translate([0,0,-.001])skin([for (i=[0:stemLayers-1]) transform(translation(StemTranslation(i,keyID))*rotation(StemRotation(i, keyID)), rounded_rectangle_profile(StemTransform(i, keyID),fn=fn,r=StemRadius(i, keyID)))]); //Transition Support for taller profile
+        
       }
     //cut for fonts and extra pattern for light?
     }
@@ -465,19 +473,28 @@ StemPath2  = quantize_trajectories(StemTrajectory2(),  steps = 10, loop=false, s
 StemCurve2  = [for(i=[0:len(StemPath2)-1])  transform(StemPath2[i]*scaling([(1.1-.1*i/(len(StemPath2)-1)),(1.1-.1*i/(len(StemPath2)-1)),1]), stem_internal())];
 
 
-module choc_stem() {
+module choc_stem(draftAng = 0) {
+  stemHeight = 3.1;
+  dia = .15;
+  wids = 1.2/2;
+  lens = 2.9/2;
+  module Stem() {
+    difference(){
+      translate([0,0,-stemHeight/2])linear_extrude(height = stemHeight)hull(){
+        translate([wids-dia,-3/2])circle(d=dia);
+        translate([-wids+dia,-3/2])circle(d=dia);
+        translate([wids-dia, 3/2])circle(d=dia);
+        translate([-wids+dia, 3/2])circle(d=dia);
+      }
 
-    translate([5.7/2,0,-3.4/2+2])difference(){
-    cube([1.25,3, 3.4], center= true);
-    translate([3.9,0,0])cylinder(d=7,3.4,center = true);
-    translate([-3.9,0,0])cylinder(d=7,3.4,center = true);
-  }
-  translate([-5.7/2,0,-3.4/2+2])difference(){
-    cube([1.25,3, 3.4], center= true);
-    translate([3.9,0,0])cylinder(d=7,3.4,center = true);
-    translate([-3.9,0,0])cylinder(d=7,3.4,center = true);
+    //cuts
+      translate([3.9,0])cylinder(d1=7+sin(draftAng)*stemHeight, d2=7,3.5, center = true, $fn = 64);
+      translate([-3.9,0])cylinder(d1=7+sin(draftAng)*stemHeight,d2=7,3.5, center = true, $fn = 64);
+    }
   }
 
+  translate([5.7/2,0,-stemHeight/2+4+StemBrimDep])Stem();
+  translate([-5.7/2,0,-stemHeight/2+4+StemBrimDep])Stem();
 }
 /// ----- helper functions
 function rounded_rectangle_profile(size=[1,1],r=1,fn=32) = [
