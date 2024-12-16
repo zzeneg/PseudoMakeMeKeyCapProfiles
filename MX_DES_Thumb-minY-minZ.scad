@@ -65,7 +65,7 @@ stemWid = 8;
 stemLen = 6;
 stemCrossHeight = 4;
 extra_vertical  = 0.6;
-StemBrimDep     = -3.4;
+StemBrimDep     = -3.7;
 stemLayers      = 50; //resolution of stem to cap top transition
 
 //injection param
@@ -409,8 +409,8 @@ module choc_stem(draftAng = 0) {
     }
   }
 
-  translate([5.7/2,0,-stemHeight/2+4+StemBrimDep])Stem();
-  translate([-5.7/2,0,-stemHeight/2+4+StemBrimDep])Stem();
+  translate([5.7/2,0,-stemHeight/2 + stemCrossHeight + StemBrimDep + 0.1])Stem();
+  translate([-5.7/2,0,-stemHeight/2 + stemCrossHeight + StemBrimDep + 0.1])Stem();
 }
 /// ----- helper functions
 function rounded_rectangle_profile(size=[1,1],r=1,fn=32) = [
