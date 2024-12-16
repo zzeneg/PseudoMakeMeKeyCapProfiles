@@ -1,12 +1,23 @@
 use <MX_DES_Standard-minY-minZ.scad>
-spru_n = 1;
 spacing = 19.05;
+vertical_spacing = 16;
 spru_radius = 0.8;
-
-row=5;
 width=1;
 
-des_spru(row=row, width=width, dot=false, edge=false);
+spru_n = 1;
+start_row = 2; end_row = 4;
+
+union() {
+    for (i = [start_row : end_row]) {
+        translate([0, -vertical_spacing * (i - start_row), 0]) des_spru(row=i, width=width, dot=false, edge=false);
+
+        if (i != end_row) {
+            translate([5, -vertical_spacing * (i - start_row) - 5, -0.8 * spru_radius])
+            rotate([90, 0, 0])
+            cylinder(h = 6, r = spru_radius, $fn=20);
+        }
+    }
+}
 
 //union() {
 //    translate([0, -19 *  0, 0])  des_spru(row=1);
