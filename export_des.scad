@@ -1,4 +1,6 @@
-use <MX_DES_Standard-minY-minZ.scad>
+// use <MX_DES_Standard-minY-minZ.scad>
+use <Choc_DES_minY.scad>
+
 spacing = 19.05;
 vertical_spacing = 16;
 spru_radius = 0.8;

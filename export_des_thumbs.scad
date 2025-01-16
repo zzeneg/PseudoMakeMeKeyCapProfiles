@@ -1,15 +1,12 @@
-use <MX_DES_Thumb-minY-minZ.scad>
+// use <MX_DES_Thumb-minY-minZ.scad>
+use <Choc_DES_minY.scad>
 
 spacing = 19.05;
 spru_radius = 0.8;
-mirror = false;
+mirror = true;
 
-// start = 0; end = 2;
-// start = 3; end = 7;
-// start = 8; end = 11;
-// start = 12; end = 18;
 // start = 20; end = 23;
-start = 24; end = 26;
+start = 47; end = 49;
 
 union() {
     for (i = [start : end]) {
