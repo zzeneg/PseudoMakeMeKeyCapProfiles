@@ -24,7 +24,8 @@ union() {
 /* spru different STLs */
 
 // stls = ["./stl/MX-minY-minZ/DES_r4_edge_x2.stl", "./stl/MX-minY-minZ/DES_r3_edge_x2.stl", "./stl/MX-minY-minZ/DES_r2_edge_x2.stl", "./stl/MX-minY-minZ/DES_r1_edge_x2.stl"];
-// // stls = ["./stl/MX-minY-minZ/DES_r3_dot_x2.stl", "./stl/MX-minY-minZ/DES_r3_edge_x2.stl"];
+// stls = ["./stl/MX-minY-minZ/DES_r3_dot_x2.stl", "./stl/MX-minY-minZ/DES_r3_edge_x2.stl"];
+// stls = ["./stl/Choc-minY/DES_r3_dot_x2.stl", "./stl/Choc-minY/DES_r3_edge_x2.stl"];
 // count = len(stls);
 
 // union() {
